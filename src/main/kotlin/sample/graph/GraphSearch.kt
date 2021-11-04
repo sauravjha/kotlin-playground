@@ -28,6 +28,31 @@ fun bfs(start: Node, target: String): List<Node>? {
     return null
 }
 
+fun dfs(start: Node, target: String): List<Node>? {
+    val next: Stack<Node> = Stack()
+    val visitedNode: MutableList<Node> = mutableListOf()
+
+    next.add(start)
+    visitedNode.add(start)
+
+    while (next.isNotEmpty()) {
+        val current = next.pop()
+        if (current.data == target) {
+            println("Found the Node!!: $current")
+            return getThePathFromTheNode(current)
+        }
+
+        current.neighbours.forEach {
+            if(it !in visitedNode) {
+                it.source = current
+                next.add(it)
+                visitedNode.add(it)
+            }
+        }
+    }
+    return null
+}
+
 fun getThePathFromTheNode(node: Node?): List<Node>? {
     val path = mutableListOf<Node>()
 

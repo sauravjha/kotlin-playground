@@ -17,6 +17,43 @@ object BfsSpek: Spek({
                 assertThat(expectedOutput, equalTo("[A: [B, D, F], B: [A, C], C: [B, E, G], G: [C]]"))
             }
         }
+        context("when the starting point is $startingPoint and the target is \"W\" which does not exist") {
+            it("returns null") {
+                val shortestPathNode = bfs(startingPoint, "W")
+                assertThat(shortestPathNode, equalTo(null))
+            }
+        }
+
+        context("when the starting point is $startingPoint and the target is \"A\" which is the first node") {
+            it("returns [A: [B, D, F]]") {
+                val shortestPathNode = bfs(startingPoint, "A").toString()
+                assertThat(shortestPathNode, equalTo("[A: [B, D, F]]"))
+            }
+        }
+    }
+
+    describe("dfs") {
+        val startingPoint = generateGraph().first()
+        context("when the starting point is $startingPoint and the target is \"G\"") {
+            it("returns the  path [A: [B, D, F], F: [A, D, E], E: [F, C], C: [B, E, G], G: [C]]") {
+                val shortestPathNode = dfs(startingPoint, "G")
+                val expectedOutput = shortestPathNode.toString()
+                assertThat(expectedOutput, equalTo("[A: [B, D, F], F: [A, D, E], E: [F, C], C: [B, E, G], G: [C]]"))
+            }
+        }
+        context("when the starting point is $startingPoint and the target is \"W\" which does not exist") {
+            it("returns null") {
+                val shortestPathNode = dfs(startingPoint, "W")
+                assertThat(shortestPathNode, equalTo(null))
+            }
+        }
+
+        context("when the starting point is $startingPoint and the target is \"A\" which is the first node") {
+            it("returns [A: [B, D, F]]") {
+                val shortestPathNode = dfs(startingPoint, "A").toString()
+                assertThat(shortestPathNode, equalTo("[A: [B, D, F]]"))
+            }
+        }
     }
 
 })
