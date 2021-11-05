@@ -46,6 +46,7 @@ object FindPaymentPairSpek: Spek({
                 assertThat(findPaymentPair.contains(expectedPairTwo), equalTo(true))
             }
         }
+
         val input2 = listOf(5, 2, 6, 8, 1, 9)
         context("when the input is 5, 2, 6, 8, 1, 9") {
             val findPaymentPair = findPaymentPair(input2, 12)
