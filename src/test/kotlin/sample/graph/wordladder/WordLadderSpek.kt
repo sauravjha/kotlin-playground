@@ -17,7 +17,6 @@ object WordLadderSpek: Spek({
                     "TALL",
                     "TAIL"
                 )
-
                 val wordLadder = wordLadder("HEAD", "TAIL")
 
                 assertThat(wordLadder, equalTo(expectedList))
